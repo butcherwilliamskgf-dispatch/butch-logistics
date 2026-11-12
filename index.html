@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Logistics & Carrier Intelligence Hub</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    .badge-glow {
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.4);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen custom-scrollbar">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+          <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 17a5 5 0 010-10h8a5 5 0 010 10m-8 0v2a2 2 0 002 2h4a2 2 0 002-2v-2m-8 0H5a2 2 0 01-2-2V9a2 2 0 012-2h1m12 10h1a2 2 0 002-2V9a2 2 0 00-2-2h-1" />
+          </svg>
+        </div>
+        <div>
+          <span class="text-lg font-black tracking-wider text-white uppercase">APEX <span class="text-emerald-400">DISPATCH</span></span>
+          <span class="text-[11px] block text-slate-400 tracking-wider font-medium">DISPATCH & CARRIER INTEL</span>
+        </div>
+      </div>
+
+      <!-- NAVIGATION TABS -->
+      <nav class="flex items-center space-x-1 sm:space-x-2 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700/60">
+        <button id="tab-btn-portfolio" onclick="switchTab('portfolio')" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 bg-emerald-500 text-slate-950 shadow-md">
+          Dispatch Portfolio
+        </button>
+        <button id="tab-btn-intelligence" onclick="switchTab('intelligence')" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-700/50">
+          MC Data Extractor
+        </button>
+        <button id="tab-btn-documents" onclick="switchTab('documents')" class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-700/50">
+          W-9 & Authority Parser
+        </button>
+      </nav>
+
+      <div class="hidden lg:flex items-center space-x-4">
+        <div class="flex items-center space-x-2 text-xs text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1.5 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>FMCSA SAFER Connected</span>
+        </div>
+        <button onclick="switchTab('portfolio'); document.getElementById('onboard-section').scrollIntoView({behavior: 'smooth'})" class="bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-bold text-xs uppercase tracking-wide px-4 py-2 rounded-lg hover:shadow-lg hover:shadow-emerald-500/25 transition">
+          Get Dispatched
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- TAB 1: DISPATCH PORTFOLIO (ROADWAY LOGISTICS INSPIRATION) -->
+  <main id="tab-portfolio" class="tab-content transition-opacity duration-300">
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden py-16 sm:py-24 border-b border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-4 py-1.5 mb-6">
+          <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+          <span class="text-xs uppercase tracking-wider font-semibold text-emerald-400">Premium US Truck Dispatching</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight max-w-4xl mx-auto leading-tight">
+          Keep Your Wheels Turning, <br class="hidden sm:inline" />
+          <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Maximize Every Mile You Drive.</span>
+        </h1>
+        <p class="mt-6 text-slate-300 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+          Dedicated 24/7 dispatchers, highest gross load negotiation, zero forced dispatch, and instant factoring coordination. We handle the paperwork so you drive with peace of mind.
+        </p>
+
+        <!-- STATS BADGES -->
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 backdrop-blur">
+            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">$7,850+</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Avg Weekly Gross</div>
+          </div>
+          <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 backdrop-blur">
+            <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400">$3.12</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Avg Rate / Mile</div>
+          </div>
+          <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 backdrop-blur">
+            <div class="text-2xl sm:text-3xl font-extrabold text-white">100%</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">No Forced Dispatch</div>
+          </div>
+          <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 backdrop-blur">
+            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">24/7</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Live Back Office</div>
+          </div>
+        </div>
+
+        <!-- HERO CTAS -->
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+          <button onclick="document.getElementById('onboard-section').scrollIntoView({behavior: 'smooth'})" class="px-8 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-sm transition shadow-lg shadow-emerald-500/25">
+            Submit Carrier Packet
+          </button>
+          <button onclick="switchTab('intelligence')" class="px-8 py-3.5 bg-slate-800 hover:bg-slate-700 border border-slate-600/80 text-white font-semibold rounded-xl text-sm transition flex items-center space-x-2">
+            <span>Try Live MC Extraction</span>
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- EQUIPMENT TYPES WE DISPATCH -->
+    <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-xs uppercase tracking-widest text-emerald-400 font-bold">Equipment Specializations</h2>
+        <p class="text-3xl font-bold text-white mt-2">Tailored Dispatch for Every Trailer Type</p>
+        <p class="text-slate-400 mt-2 text-sm">We secure premium freight across all major load boards (DAT One, Truckstop, direct shipper contracts).</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Dry Van -->
+        <div class="bg-slate-900 border border-slate-800 hover:border-emerald-500/50 transition-all rounded-2xl p-6 group">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white">53' Dry Van</h3>
+          <p class="text-slate-400 text-sm mt-2">Dedicated regional & OTR lanes, heavy volume, touch & no-touch freight with consistent round trips.</p>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-300">
+            <span>Avg Gross: <strong class="text-emerald-400">$6,500 - $8,200/wk</strong></span>
+            <span>Fee: <strong>6%</strong></span>
+          </div>
+        </div>
+
+        <!-- Reefer -->
+        <div class="bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all rounded-2xl p-6 group">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white">Reefer (Temperature-Controlled)</h3>
+          <p class="text-slate-400 text-sm mt-2">Produce, frozen foods, and pharmaceuticals with high-paying priority lanes and minimum deadhead.</p>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-300">
+            <span>Avg Gross: <strong class="text-cyan-400">$7,500 - $9,500/wk</strong></span>
+            <span>Fee: <strong>7%</strong></span>
+          </div>
+        </div>
+
+        <!-- Flatbed & Step Deck -->
+        <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all rounded-2xl p-6 group">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 16V6a1 1 0 00-1-1H4"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-white">Flatbed / Step Deck / RGN</h3>
+          <p class="text-slate-400 text-sm mt-2">Machinery, building materials, and oversized loads with specialized permit coordination and high rates.</p>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-300">
+            <span>Avg Gross: <strong class="text-amber-400">$8,500 - $11,000/wk</strong></span>
+            <span>Fee: <strong>8%</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARRIER ONBOARDING FORM SECTION -->
+    <section id="onboard-section" class="py-16 bg-slate-900/60 border-t border-slate-800">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-xs uppercase tracking-widest text-emerald-400 font-bold">Fast Digital Setup</h2>
+          <p class="text-3xl font-bold text-white mt-1">Start Rolling in Less Than 2 Hours</p>
+          <p class="text-slate-400 text-sm mt-2">Submit your basic details. We verify your authority and send your first load options immediately.</p>
+        </div>
+
+        <form id="carrier-onboard-form" onsubmit="event.preventDefault(); submitCarrierForm();" class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Motor Carrier (MC) Number</label>
+              <div class="relative">
+                <input type="text" id="form-mc" placeholder="e.g. MC-1058291" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+                <button type="button" onclick="autoFillFromMC()" class="absolute right-2 top-2 text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-lg hover:bg-emerald-500/30 font-medium">Verify MC</button>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">USDOT Number</label>
+              <input type="text" id="form-dot" placeholder="e.g. 3328190" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Company Legal Name</label>
+              <input type="text" id="form-name" placeholder="e.g. Swift Path Transport LLC" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Primary Equipment</label>
+              <select id="form-equipment" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+                <option value="Dry Van (53ft)">53' Dry Van</option>
+                <option value="Reefer (53ft)">53' Reefer</option>
+                <option value="Flatbed / Step Deck">Flatbed / Step Deck</option>
+                <option value="Power Only">Power Only</option>
+                <option value="Box Truck (26ft)">26' Box Truck</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Contact Phone Number</label>
+              <input type="tel" id="form-phone" placeholder="(555) 000-0000" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Email Address</label>
+              <input type="email" id="form-email" placeholder="dispatch@yourfleet.com" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+            </div>
+          </div>
+
+          <!-- Document Upload simulation -->
+          <div class="border-2 border-dashed border-slate-700 hover:border-emerald-500/60 rounded-2xl p-6 text-center transition cursor-pointer bg-slate-950/40">
+            <svg class="mx-auto h-10 w-10 text-slate-500" stroke="currentColor" fill="none" viewBox="0 0 48 48"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <p class="mt-2 text-sm text-slate-300 font-medium">Upload Carrier Packet (W-9, COI, MC Certificate)</p>
+            <p class="text-xs text-slate-500">PDF, JPG, PNG up to 10MB (or extract automatically using our Document Parser tab)</p>
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl text-sm uppercase tracking-wider transition shadow-lg shadow-emerald-500/25">
+            Submit Setup Application & Request Rate Sheet
+          </button>
+          <div id="form-success" class="hidden text-center text-sm font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-800 p-3 rounded-xl">
+            Success! Your carrier packet has been received. Our senior dispatcher will review your MC authority and call you within 15 minutes.
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- TAB 2: LIVE MC / USDOT DATA EXTRACTION & CARRIER CABINET (CARRIERINTEL INSPIRATION) -->
+  <main id="tab-intelligence" class="tab-content hidden transition-opacity duration-300 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center space-x-2 text-xs font-semibold text-emerald-400 uppercase tracking-widest bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800/80 mb-2">
+            <span>FMCSA SAFER Carrier Vetting Engine</span>
+          </div>
+          <h1 class="text-3xl font-black text-white">Motor Carrier (MC) Intelligence & Lookup</h1>
+          <p class="text-slate-400 text-sm mt-1">Extract real-time FMCSA authority, active BIPD insurance filings, safety ratings, and inspection OOS percentages.</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-xs text-slate-400">Try demo MC:</span>
+          <button onclick="runSampleMC('1058291')" class="text-xs bg-slate-800 hover:bg-slate-700 text-emerald-400 font-mono px-2.5 py-1 rounded-lg border border-slate-700">MC-1058291</button>
+          <button onclick="runSampleMC('849201')" class="text-xs bg-slate-800 hover:bg-slate-700 text-cyan-400 font-mono px-2.5 py-1 rounded-lg border border-slate-700">MC-849201</button>
+          <button onclick="runSampleMC('1489021')" class="text-xs bg-slate-800 hover:bg-slate-700 text-amber-400 font-mono px-2.5 py-1 rounded-lg border border-slate-700">MC-1489021</button>
+        </div>
+      </div>
+
+      <!-- SEARCH INPUT BAR -->
+      <div class="mt-6 bg-slate-900 border border-slate-800 rounded-2xl p-3 shadow-xl flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-1">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input type="text" id="mc-search-input" placeholder="Enter MC Number (e.g. 1058291) or USDOT Number..." class="w-full pl-11 pr-4 py-3 bg-slate-950 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+        </div>
+        <button onclick="performMCLookup()" class="px-7 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-sm transition flex items-center justify-center space-x-2 shadow-lg shadow-emerald-500/20">
+          <span id="search-btn-text">Extract Carrier Data</span>
+          <svg id="search-spinner" class="hidden w-4 h-4 animate-spin text-slate-950" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- CARRIER INTEL RESULTS CARD (DYNAMIC) -->
+    <div id="intel-result-card" class="space-y-6">
+      <!-- Top Overview Header -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800">
+          <div>
+            <div class="flex items-center space-x-3">
+              <h2 id="res-legal-name" class="text-2xl sm:text-3xl font-black text-white">BLUE PEAK FREIGHTWAYS LLC</h2>
+              <span id="res-authority-badge" class="px-3 py-1 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-bold rounded-full">ACTIVE AUTHORITY</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 text-xs text-slate-400 mt-2 font-mono">
+              <span>MC#: <strong id="res-mc" class="text-slate-200">MC-1058291</strong></span>
+              <span>USDOT#: <strong id="res-dot" class="text-slate-200">3328190</strong></span>
+              <span>DBA: <strong id="res-dba" class="text-slate-200">BLUE PEAK LOGISTICS</strong></span>
+              <span>Entity Type: <strong id="res-entity" class="text-slate-200">CARRIER (INTERSTATE)</strong></span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <button onclick="saveToCabinet()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white rounded-xl text-xs font-semibold transition flex items-center space-x-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+              <span>Save to Cabinet</span>
+            </button>
+            <button onclick="downloadCarrierReport()" class="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs transition flex items-center space-x-2 shadow-md">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <span>Export Vetting Report</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Key Metric Pillars -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+          <!-- Authority & Status -->
+          <div class="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-4">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold block">Operating Authority</span>
+            <div id="res-auth-type" class="text-lg font-bold text-white mt-1">Property (Common)</div>
+            <div class="text-xs text-emerald-400 mt-1 flex items-center space-x-1">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Granted: 04/18/2021 (Active)</span>
+            </div>
+          </div>
+
+          <!-- Insurance Filings -->
+          <div class="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-4">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold block">BIPD Liability Coverage</span>
+            <div id="res-bipd" class="text-lg font-bold text-white mt-1">$1,000,000 Verified</div>
+            <div id="res-cargo" class="text-xs text-cyan-400 mt-1">Cargo Policy: $100,000 on file</div>
+          </div>
+
+          <!-- Safety & OOS -->
+          <div class="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-4">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold block">Safety Rating & OOS</span>
+            <div id="res-safety" class="text-lg font-bold text-emerald-400 mt-1">Satisfactory / Clean</div>
+            <div class="text-xs text-slate-400 mt-1">Driver OOS: <span id="res-driver-oos" class="text-emerald-400 font-semibold">3.2%</span> (Natl: 6.8%)</div>
+          </div>
+
+          <!-- Equipment & Drivers -->
+          <div class="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-4">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold block">Fleet Power Units</span>
+            <div id="res-fleet" class="text-lg font-bold text-white mt-1">8 Power Units / 9 Drivers</div>
+            <div class="text-xs text-slate-400 mt-1">Inspections: <span class="text-white font-medium">19 roadside checks</span></div>
+          </div>
+        </div>
+
+        <!-- Detailed Inspection & Address Accordion -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-800 text-sm">
+          <div>
+            <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3">FMCSA Registered Physical Address</h4>
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-slate-300 font-mono text-xs space-y-1">
+              <p id="res-address">1420 LOGISTICS PARKWAY, STE 400</p>
+              <p id="res-citystate">DALLAS, TX 75201</p>
+              <p id="res-phone" class="text-emerald-400 pt-1">Tel: (214) 892-4110 • Email: compliance@bluepeak.com</p>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-3">Underwriter & Insurance Policy History</h4>
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-slate-300 font-mono text-xs space-y-1">
+              <p>Underwriter: <strong class="text-white">PROGRESSIVE COMMERCIAL CASUALTY</strong></p>
+              <p>Policy #: <strong class="text-cyan-400">CA-90421190-24</strong> (Active)</p>
+              <p class="text-slate-400">Cancellation Status: <strong class="text-emerald-400">NO CANCELLATIONS PENDING</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAVED CARRIER CABINET (CRM TABLE) -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h3 class="text-xl font-bold text-white">Carrier Cabinet (Service Provider Roster)</h3>
+            <p class="text-xs text-slate-400">Vetted motor carriers monitored for dispatch allocation.</p>
+          </div>
+          <span class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-full border border-slate-700" id="cabinet-count">3 Carriers Saved</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400 uppercase">
+                <th class="py-3 px-3">Carrier / DBA</th>
+                <th class="py-3 px-3">MC#</th>
+                <th class="py-3 px-3">USDOT#</th>
+                <th class="py-3 px-3">Equipment</th>
+                <th class="py-3 px-3">Liability</th>
+                <th class="py-3 px-3">Status</th>
+                <th class="py-3 px-3 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="cabinet-rows" class="divide-y divide-slate-800/60">
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-3 font-bold text-white">Blue Peak Freightways LLC</td>
+                <td class="py-3.5 px-3 text-emerald-400">MC-1058291</td>
+                <td class="py-3.5 px-3 text-slate-300">3328190</td>
+                <td class="py-3.5 px-3 text-slate-400">8 Units (Van/Reefer)</td>
+                <td class="py-3.5 px-3 text-slate-300">$1,000,000</td>
+                <td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-sans font-semibold">Active</span></td>
+                <td class="py-3.5 px-3 text-right font-sans"><button onclick="runSampleMC('1058291')" class="text-emerald-400 hover:underline">Inspect</button></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-3 font-bold text-white">Apex Silverline Express</td>
+                <td class="py-3.5 px-3 text-cyan-400">MC-849201</td>
+                <td class="py-3.5 px-3 text-slate-300">2984120</td>
+                <td class="py-3.5 px-3 text-slate-400">4 Units (Flatbed)</td>
+                <td class="py-3.5 px-3 text-slate-300">$1,000,000</td>
+                <td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-sans font-semibold">Active</span></td>
+                <td class="py-3.5 px-3 text-right font-sans"><button onclick="runSampleMC('849201')" class="text-cyan-400 hover:underline">Inspect</button></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-3 font-bold text-white">Titan Heavy Haul LLC</td>
+                <td class="py-3.5 px-3 text-amber-400">MC-1489021</td>
+                <td class="py-3.5 px-3 text-slate-300">4192084</td>
+                <td class="py-3.5 px-3 text-slate-400">12 Units (Step Deck)</td>
+                <td class="py-3.5 px-3 text-slate-300">$1,000,000</td>
+                <td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-sans font-semibold">Active</span></td>
+                <td class="py-3.5 px-3 text-right font-sans"><button onclick="runSampleMC('1489021')" class="text-amber-400 hover:underline">Inspect</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TAB 3: W-9 FORM & MC AUTHORITY LETTER EXTRACTION (FREIGHTLENS INSPIRATION) -->
+  <main id="tab-documents" class="tab-content hidden transition-opacity duration-300 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <div class="inline-flex items-center space-x-2 text-xs font-semibold text-emerald-400 uppercase tracking-widest bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800/80 mb-2">
+        <span>Freight Document OCR & AI Parsing Engine</span>
+      </div>
+      <h1 class="text-3xl font-black text-white">W-9 Form & MC Authority Letter Extractor</h1>
+      <p class="text-slate-400 text-sm mt-1">Drop carrier onboarding paperwork to automatically read EIN, Legal Names, Docket MC Numbers, and cross-verify with FMCSA.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Upload & Quick Sample Box (5 Cols) -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl">
+          <h3 class="text-base font-bold text-white mb-2">Select Document Type to Extract</h3>
+          <div class="grid grid-cols-2 gap-3 mb-6">
+            <button id="doc-type-w9" onclick="setDocType('w9')" class="p-3 rounded-xl border border-emerald-500 bg-emerald-500/10 text-emerald-400 text-xs font-bold text-center">
+              IRS W-9 Form (Tax)
+            </button>
+            <button id="doc-type-mc" onclick="setDocType('mc')" class="p-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-300 text-xs font-bold text-center hover:border-slate-600">
+              MC Authority Letter
+            </button>
+          </div>
+
+          <!-- Drag and Drop Dropzone -->
+          <div id="dropzone" onclick="simulateDocUpload()" class="border-2 border-dashed border-emerald-500/40 hover:border-emerald-400 bg-slate-950/60 rounded-2xl p-8 text-center transition cursor-pointer">
+            <svg class="mx-auto h-12 w-12 text-emerald-400/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+            <p class="mt-3 text-sm font-bold text-white">Click or Drop Document File</p>
+            <p class="text-xs text-slate-400 mt-1">Supports PDF, Scanned TIFF, PNG, JPG</p>
+            <div class="mt-4">
+              <span class="inline-block bg-slate-800 border border-slate-700 text-xs text-emerald-400 px-3 py-1.5 rounded-lg font-mono">
+                Click to Auto-Extract Sample
+              </span>
+            </div>
+          </div>
+
+          <!-- Quick Test Presets -->
+          <div class="mt-6 pt-6 border-t border-slate-800">
+            <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold block mb-2">Test with Instant Samples:</span>
+            <div class="flex flex-col gap-2">
+              <button onclick="loadSampleW9(1)" class="w-full text-left text-xs bg-slate-950 hover:bg-slate-800/80 p-3 rounded-xl border border-slate-800 text-slate-300 flex items-center justify-between">
+                <span>📄 Sample W-9: Swift Path Logistics LLC</span>
+                <span class="text-emerald-400 font-mono font-semibold">Load</span>
+              </button>
+              <button onclick="loadSampleMCAuth(1)" class="w-full text-left text-xs bg-slate-950 hover:bg-slate-800/80 p-3 rounded-xl border border-slate-800 text-slate-300 flex items-center justify-between">
+                <span>📄 Sample MC Auth: USDOT Certificate 1058291</span>
+                <span class="text-cyan-400 font-mono font-semibold">Load</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Extracted Results & Validation View (7 Cols) -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl">
+          <div class="flex items-center justify-between pb-6 border-b border-slate-800">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span id="doc-badge-status" class="px-2.5 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full text-xs font-bold">PARSED & MATCHED</span>
+                <span class="text-xs text-slate-400 font-mono">Confidence: 99.4%</span>
+              </div>
+              <h3 id="doc-parsed-title" class="text-xl font-black text-white mt-2">W-9 Form: Swift Path Logistics LLC</h3>
+            </div>
+            <button onclick="copyExtractedJSON()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-lg border border-slate-700 font-mono flex items-center space-x-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <span>Copy Data</span>
+            </button>
+          </div>
+
+          <!-- Structured Extracted Fields Grid -->
+          <div id="w9-fields-container" class="mt-6 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Line 1: Legal Name</span>
+                <div id="w9-legal-name" class="text-sm font-bold text-white mt-1">SWIFT PATH LOGISTICS LLC</div>
+              </div>
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Line 2: Business / DBA Name</span>
+                <div id="w9-dba" class="text-sm font-bold text-slate-300 mt-1">SWIFT PATH TRANSPORT</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Federal Tax Classification</span>
+                <div id="w9-tax-class" class="text-sm font-bold text-cyan-400 mt-1">Limited Liability Company (LLC - S Corp)</div>
+              </div>
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Employer Identification Number (EIN)</span>
+                <div id="w9-ein" class="text-sm font-mono font-bold text-emerald-400 mt-1">XX-XXX8492 (Verified Active)</div>
+              </div>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Registered Address (Line 5 & 6)</span>
+              <div id="w9-address" class="text-sm font-bold text-white mt-1">742 EVERGREEN COMMERCE WAY, SUITE 210</div>
+              <div id="w9-citystate" class="text-xs text-slate-400 mt-0.5">COLUMBUS, OH 43215</div>
+            </div>
+
+            <!-- FMCSA SAFER Cross-Verification Match -->
+            <div class="bg-emerald-950/40 border border-emerald-800/80 rounded-2xl p-4">
+              <div class="flex items-start space-x-3">
+                <div class="h-6 w-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-300">FMCSA Authority & W-9 Cross-Verification Match</h4>
+                  <p class="text-xs text-slate-300 mt-1">The Employer Identification Number and Legal Name match FMCSA SAFER Census records for <strong>MC-1058291 / USDOT 3328190</strong>. Carrier is clear for rate confirmation issuance.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MC Authority Letter Fields (Hidden by default, toggled when MC chosen) -->
+          <div id="mc-fields-container" class="mt-6 space-y-4 hidden">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">FMCSA Docket Number</span>
+                <div id="mc-letter-number" class="text-sm font-mono font-bold text-emerald-400 mt-1">MC-1058291-C</div>
+              </div>
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">USDOT Number</span>
+                <div id="mc-letter-dot" class="text-sm font-mono font-bold text-cyan-400 mt-1">USDOT 3328190</div>
+              </div>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Granted Authority Title</span>
+              <div class="text-sm font-bold text-white mt-1">COMMON CARRIER OF PROPERTY (EXCEPT HOUSEHOLD GOODS)</div>
+              <div class="text-xs text-emerald-400 mt-1">Certificate Issued: April 18, 2021 by FMCSA Licensing Division</div>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Grantee Entity</span>
+              <div class="text-sm font-bold text-white mt-1">SWIFT PATH LOGISTICS LLC</div>
+              <div class="text-xs text-slate-400 mt-0.5">COLUMBUS, OH</div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs text-slate-400">Extracted in <strong>0.38 seconds</strong> via Neural OCR</span>
+            <button onclick="alert('Exported parsed carrier package to dispatch queue!')" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl transition">
+              Approve & Add to Active Dispatches
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-20 border-t border-slate-800 bg-slate-950 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div>
+        © 2026 Apex Dispatch & Carrier Intelligence. Unified Trucking Solutions.
+      </div>
+      <div class="flex items-center space-x-6">
+        <a href="https://roadwaylogisticsgroupllc.com" target="_blank" class="hover:text-slate-300 transition">Roadway Logistics Portfolio Model</a>
+        <a href="https://carrierintel.ai" target="_blank" class="hover:text-slate-300 transition">CarrierIntel Model</a>
+        <a href="https://freightlens.com" target="_blank" class="hover:text-slate-300 transition">FreightLens Model</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+  <script>
+    // Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-500', 'text-slate-950', 'shadow-md');
+        btn.classList.add('text-slate-300');
+      });
+
+      const activeTab = document.getElementById('tab-' + tabId);
+      const activeBtn = document.getElementById('tab-btn-' + tabId);
+
+      if (activeTab && activeBtn) {
+        activeTab.classList.remove('hidden');
+        activeBtn.classList.remove('text-slate-300');
+        activeBtn.classList.add('bg-emerald-500', 'text-slate-950', 'shadow-md');
+      }
+    }
+
+    // Carrier Database Mock for Live MC Lookups
+    const carrierDB = {
+      '1058291': {
+        legalName: 'BLUE PEAK FREIGHTWAYS LLC',
+        dba: 'BLUE PEAK LOGISTICS',
+        mc: 'MC-1058291',
+        dot: '3328190',
+        entity: 'CARRIER (INTERSTATE)',
+        authType: 'Property (Common Carrier)',
+        authDate: '04/18/2021 (Active)',
+        bipd: '$1,000,000 Verified',
+        cargo: 'Cargo Policy: $100,000 on file',
+        safety: 'Satisfactory / Clean',
+        driverOos: '3.2%',
+        fleet: '8 Power Units / 9 Drivers',
+        address: '1420 LOGISTICS PARKWAY, STE 400',
+        citystate: 'DALLAS, TX 75201',
+        phone: 'Tel: (214) 892-4110 • Email: compliance@bluepeak.com'
+      },
+      '849201': {
+        legalName: 'APEX SILVERLINE EXPRESS INC',
+        dba: 'SILVERLINE FREIGHT',
+        mc: 'MC-849201',
+        dot: '2984120',
+        entity: 'CARRIER (INTERSTATE)',
+        authType: 'Property (Common & Contract)',
+        authDate: '11/04/2018 (Active)',
+        bipd: '$1,000,000 Verified',
+        cargo: 'Cargo Policy: $250,000 on file',
+        safety: 'Satisfactory / Low Risk',
+        driverOos: '1.9%',
+        fleet: '4 Power Units / 4 Drivers',
+        address: '882 HIGHWAY 99 SOUTH',
+        citystate: 'BAKERSFIELD, CA 93307',
+        phone: 'Tel: (661) 555-8912 • Email: dispatch@silverline.com'
+      },
+      '1489021': {
+        legalName: 'TITAN HEAVY HAUL LLC',
+        dba: 'TITAN SPECIALIZED',
+        mc: 'MC-1489021',
+        dot: '4192084',
+        entity: 'CARRIER (INTERSTATE)',
+        authType: 'Property (Common Carrier)',
+        authDate: '01/15/2023 (Active)',
+        bipd: '$1,000,000 Verified',
+        cargo: 'Cargo Policy: $500,000 on file (Heavy Equipment)',
+        safety: 'Satisfactory / Vetted',
+        driverOos: '2.8%',
+        fleet: '12 Power Units / 14 Drivers',
+        address: '500 INDUSTRIAL LOOP',
+        citystate: 'ATLANTA, GA 30336',
+        phone: 'Tel: (404) 912-7740 • Email: ops@titanheavyhaul.com'
+      }
+    };
+
+    function runSampleMC(num) {
+      document.getElementById('mc-search-input').value = num;
+      performMCLookup();
+    }
+
+    function performMCLookup() {
+      const input = document.getElementById('mc-search-input').value.trim().replace(/[^0-9]/g, '');
+      const btnText = document.getElementById('search-btn-text');
+      const spinner = document.getElementById('search-spinner');
+
+      btnText.innerText = 'Extracting FMCSA...';
+      spinner.classList.remove('hidden');
+
+      setTimeout(() => {
+        spinner.classList.add('hidden');
+        btnText.innerText = 'Extract Carrier Data';
+
+        const data = carrierDB[input] || {
+          legalName: (input ? 'CARRIER MC-' + input + ' LLC' : 'INDEPENDENT TRANSPORT LLC'),
+          dba: 'FREIGHT DIVISION',
+          mc: 'MC-' + (input || '992019'),
+          dot: (input ? '3' + input.substring(0,6) : '3849102'),
+          entity: 'CARRIER (INTERSTATE)',
+          authType: 'Property (Common Carrier)',
+          authDate: 'Verified Active Authority',
+          bipd: '$1,000,000 Verified',
+          cargo: 'Cargo Policy: $100,000 on file',
+          safety: 'Satisfactory / Eligible',
+          driverOos: '2.5%',
+          fleet: '5 Power Units / 5 Drivers',
+          address: '400 TRANSPORTATION BLVD',
+          citystate: 'CHICAGO, IL 60607',
+          phone: 'Tel: (312) 555-0199 • Email: info@carriertrucking.com'
+        };
+
+        document.getElementById('res-legalName' ? 'res-legal-name' : 'res-legal-name').innerText = data.legalName;
+        document.getElementById('res-dba').innerText = data.dba;
+        document.getElementById('res-mc').innerText = data.mc;
+        document.getElementById('res-dot').innerText = data.dot;
+        document.getElementById('res-entity').innerText = data.entity;
+        document.getElementById('res-auth-type').innerText = data.authType;
+        document.getElementById('res-bipd').innerText = data.bipd;
+        document.getElementById('res-cargo').innerText = data.cargo;
+        document.getElementById('res-safety').innerText = data.safety;
+        document.getElementById('res-driver-oos').innerText = data.driverOos;
+        document.getElementById('res-fleet').innerText = data.fleet;
+        document.getElementById('res-address').innerText = data.address;
+        document.getElementById('res-citystate').innerText = data.citystate;
+        document.getElementById('res-phone').innerText = data.phone;
+      }, 450);
+    }
+
+    function saveToCabinet() {
+      const name = document.getElementById('res-legal-name').innerText;
+      const mc = document.getElementById('res-mc').innerText;
+      const dot = document.getElementById('res-dot').innerText;
+      const fleet = document.getElementById('res-fleet').innerText;
+
+      const tbody = document.getElementById('cabinet-rows');
+      const tr = document.createElement('tr');
+      tr.className = 'hover:bg-slate-800/30 transition';
+      tr.innerHTML = `
+        <td class="py-3.5 px-3 font-bold text-white">${name}</td>
+        <td class="py-3.5 px-3 text-emerald-400 font-mono">${mc}</td>
+        <td class="py-3.5 px-3 text-slate-300 font-mono">${dot}</td>
+        <td class="py-3.5 px-3 text-slate-400">${fleet}</td>
+        <td class="py-3.5 px-3 text-slate-300">$1,000,000</td>
+        <td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-sans font-semibold">Active</span></td>
+        <td class="py-3.5 px-3 text-right font-sans"><button onclick="runSampleMC('${mc.replace(/[^0-9]/g,'')}')" class="text-emerald-400 hover:underline">Inspect</button></td>
+      `;
+      tbody.prepend(tr);
+      alert('Carrier ' + name + ' (' + mc + ') has been successfully saved to your Cabinet!');
+    }
+
+    function downloadCarrierReport() {
+      const name = document.getElementById('res-legal-name').innerText;
+      const mc = document.getElementById('res-mc').innerText;
+      alert(`Generating PDF Carrier Vetting Dossier for ${name} (${mc})...\n• FMCSA Status: ACTIVE\n• BIPD: $1,000,000\n• Safety: CLEAN / SATISFACTORY`);
+    }
+
+    // Document Extractor Logic (W-9 vs MC Letter)
+    function setDocType(type) {
+      const btnW9 = document.getElementById('doc-type-w9');
+      const btnMC = document.getElementById('doc-type-mc');
+      const w9Container = document.getElementById('w9-fields-container');
+      const mcContainer = document.getElementById('mc-fields-container');
+
+      if (type === 'w9') {
+        btnW9.className = 'p-3 rounded-xl border border-emerald-500 bg-emerald-500/10 text-emerald-400 text-xs font-bold text-center';
+        btnMC.className = 'p-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-300 text-xs font-bold text-center hover:border-slate-600';
+        w9Container.classList.remove('hidden');
+        mcContainer.classList.add('hidden');
+        document.getElementById('doc-parsed-title').innerText = 'W-9 Form: Swift Path Logistics LLC';
+      } else {
+        btnMC.className = 'p-3 rounded-xl border border-emerald-500 bg-emerald-500/10 text-emerald-400 text-xs font-bold text-center';
+        btnW9.className = 'p-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-300 text-xs font-bold text-center hover:border-slate-600';
+        w9Container.classList.add('hidden');
+        mcContainer.classList.remove('hidden');
+        document.getElementById('doc-parsed-title').innerText = 'MC Authority Letter: Docket MC-1058291';
+      }
+    }
+
+    function simulateDocUpload() {
+      alert('Document received! Performing neural OCR and extracting EIN, Authority, and Cross-Referencing FMCSA records...');
+      loadSampleW9(1);
+    }
+
+    function loadSampleW9(id) {
+      setDocType('w9');
+      document.getElementById('w9-legal-name').innerText = 'SWIFT PATH LOGISTICS LLC';
+      document.getElementById('w9-dba').innerText = 'SWIFT PATH TRANSPORT';
+      document.getElementById('w9-tax-class').innerText = 'Limited Liability Company (LLC - S Corp)';
+      document.getElementById('w9-ein').innerText = 'XX-XXX8492 (Verified Active)';
+      document.getElementById('w9-address').innerText = '742 EVERGREEN COMMERCE WAY, SUITE 210';
+      document.getElementById('w9-citystate').innerText = 'COLUMBUS, OH 43215';
+    }
+
+    function loadSampleMCAuth(id) {
+      setDocType('mc');
+      document.getElementById('mc-letter-number').innerText = 'MC-1058291-C';
+      document.getElementById('mc-letter-dot').innerText = 'USDOT 3328190';
+    }
+
+    function copyExtractedJSON() {
+      const sampleJSON = JSON.stringify({
+        legalName: "SWIFT PATH LOGISTICS LLC",
+        dba: "SWIFT PATH TRANSPORT",
+        taxClassification: "LLC",
+        ein: "XX-XXX8492",
+        mcNumber: "MC-1058291",
+        dotNumber: "3328190",
+        address: "742 EVERGREEN COMMERCE WAY, SUITE 210, COLUMBUS, OH 43215",
+        fmcsaStatus: "ACTIVE",
+        insuranceLiability: 1000000
+      }, null, 2);
+      navigator.clipboard.writeText(sampleJSON).then(() => {
+        alert("Extracted JSON copied to clipboard!");
+      });
+    }
+
+    function autoFillFromMC() {
+      const mc = document.getElementById('form-mc').value;
+      if (!mc) {
+        document.getElementById('form-mc').value = 'MC-1058291';
+      }
+      document.getElementById('form-dot').value = '3328190';
+      document.getElementById('form-name').value = 'Blue Peak Freightways LLC';
+      document.getElementById('form-phone').value = '(214) 892-4110';
+      document.getElementById('form-email').value = 'dispatch@bluepeak.com';
+      alert('Auto-populated verified carrier details from FMCSA SAFER!');
+    }
+
+    function submitCarrierForm() {
+      document.getElementById('form-success').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
