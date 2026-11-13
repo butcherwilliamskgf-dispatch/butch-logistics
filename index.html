@@ -19,47 +19,48 @@
     }
     .equip-radio:checked + label {
       border-color: #10b981;
-      background-color: rgba(16, 185, 129, 0.15);
+      background-color: rgba(16, 185, 129, 0.2);
       color: #34d399;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen custom-scrollbar">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen custom-scrollbar selection:bg-emerald-500 selection:text-slate-950">
 
   <!-- TOP NAVIGATION BAR -->
-  <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
+  <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-          <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('portfolio')">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-emerald-500/25">
+          <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M8 17a5 5 0 010-10h8a5 5 0 010 10m-8 0v2a2 2 0 002 2h4a2 2 0 002-2v-2m-8 0H5a2 2 0 01-2-2V9a2 2 0 012-2h1m12 10h1a2 2 0 002-2V9a2 2 0 00-2-2h-1" />
           </svg>
         </div>
         <div>
           <span class="text-xl font-black tracking-wider text-white uppercase">BUTCH <span class="text-emerald-400">LOGISTICS</span></span>
-          <span class="text-[11px] block text-slate-400 tracking-wider font-semibold">TRUCK DISPATCH & CARRIER SUITE</span>
+          <span class="text-[10px] block text-slate-400 tracking-wider font-bold">ALL-IN-ONE DISPATCH & INTELLIGENCE</span>
         </div>
       </div>
 
       <!-- NAVIGATION TABS -->
-      <nav class="flex items-center space-x-1 sm:space-x-2 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700/60">
+      <nav class="flex items-center space-x-1 sm:space-x-2 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800">
         <button id="tab-btn-portfolio" onclick="switchTab('portfolio')" class="tab-btn px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 bg-emerald-500 text-slate-950 shadow-md">
           Dispatch Portfolio
         </button>
-        <button id="tab-btn-generator" onclick="switchTab('generator')" class="tab-btn px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center space-x-1.5">
+        <button id="tab-btn-generator" onclick="switchTab('generator')" class="tab-btn px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/80 flex items-center space-x-1.5">
           <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
           <span>MC Packet Generator</span>
         </button>
-        <button id="tab-btn-intelligence" onclick="switchTab('intelligence')" class="tab-btn px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-700/50">
+        <button id="tab-btn-intelligence" onclick="switchTab('intelligence')" class="tab-btn px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/80">
           MC Data Extractor
         </button>
-        <button id="tab-btn-documents" onclick="switchTab('documents')" class="tab-btn px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-700/50">
+        <button id="tab-btn-documents" onclick="switchTab('documents')" class="tab-btn px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 text-slate-300 hover:text-white hover:bg-slate-800/80">
           Document OCR Parser
         </button>
       </nav>
 
       <div class="hidden xl:flex items-center space-x-4">
-        <a href="tel:2092023080" class="flex items-center space-x-2 text-xs text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1.5 rounded-full hover:bg-emerald-900/50 transition">
+        <a href="tel:2092023080" class="flex items-center space-x-2 text-xs text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1.5 rounded-full hover:bg-emerald-900/60 transition shadow-sm">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
           <span class="font-bold font-mono">(209) 202-3080</span>
         </a>
@@ -70,48 +71,56 @@
     </div>
   </header>
 
-  <!-- TAB 1: DISPATCH PORTFOLIO (ROADWAY LOGISTICS INSPIRATION + DRIVER-FRIENDLY SIGN-UP) -->
+  <!-- TAB 1: DISPATCH PORTFOLIO (WITH RICH CINEMATIC BACKGROUNDS) -->
   <main id="tab-portfolio" class="tab-content transition-opacity duration-300">
-    <!-- HERO SECTION -->
-    <section class="relative overflow-hidden py-14 sm:py-20 border-b border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950">
+    
+    <!-- HERO SECTION WITH CINEMATIC TRUCKING BACKGROUND -->
+    <section class="relative overflow-hidden py-20 sm:py-28 border-b border-slate-800">
+      <!-- Background Image with Gradient Overlay -->
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2000&q=80" alt="Semi truck on American highway" class="w-full h-full object-cover object-center filter brightness-[0.45] saturate-[1.2] transform scale-105 transition duration-1000">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/70 to-slate-950"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent"></div>
+      </div>
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <div class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-4 py-1.5 mb-5">
-          <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-          <span class="text-xs uppercase tracking-wider font-bold text-emerald-400">Butch Logistics LLC • Dedicated US Truck Dispatching</span>
+        <div class="inline-flex items-center space-x-2 bg-emerald-500/15 border border-emerald-500/40 backdrop-blur-md rounded-full px-4 py-1.5 mb-6 shadow-lg shadow-emerald-950/50">
+          <span class="h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="text-xs uppercase tracking-wider font-extrabold text-emerald-400">Butch Logistics LLC • Dedicated US Truck Dispatching</span>
         </div>
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight max-w-4xl mx-auto leading-tight">
-          Keep Your Wheels Turning, <br class="hidden sm:inline" />
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight max-w-4xl mx-auto leading-[1.1] drop-shadow-lg">
+          Keep Your Wheels Turning, <br />
           <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Maximize Every Mile With Butch.</span>
         </h1>
-        <p class="mt-4 text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-          Dedicated 24/7 dispatchers, highest gross load negotiation, zero forced dispatch, and direct factoring support. We negotiate top rates and handle billing so you stay focused on the road.
+        <p class="mt-6 text-slate-200 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed drop-shadow font-medium">
+          Dedicated 24/7 dispatchers, aggressive rate negotiation on DAT One & Truckstop, zero forced dispatch, and instant factoring support.
         </p>
 
-        <!-- STATS BADGES -->
-        <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
-          <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 backdrop-blur">
-            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">$7,850+</div>
-            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Avg Weekly Gross</div>
+        <!-- STATS BADGES (GLASSMORPHIC) -->
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div class="bg-slate-900/80 border border-slate-700/70 rounded-2xl p-4 backdrop-blur-md shadow-xl hover:border-emerald-500/50 transition">
+            <div class="text-3xl sm:text-4xl font-black text-emerald-400">$7,850+</div>
+            <div class="text-xs text-slate-300 mt-1 uppercase tracking-wider font-bold">Avg Weekly Gross</div>
           </div>
-          <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 backdrop-blur">
-            <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400">$3.12</div>
-            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Avg Rate / Mile</div>
+          <div class="bg-slate-900/80 border border-slate-700/70 rounded-2xl p-4 backdrop-blur-md shadow-xl hover:border-cyan-500/50 transition">
+            <div class="text-3xl sm:text-4xl font-black text-cyan-400">$3.12</div>
+            <div class="text-xs text-slate-300 mt-1 uppercase tracking-wider font-bold">Avg Rate / Mile</div>
           </div>
-          <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 backdrop-blur">
-            <div class="text-2xl sm:text-3xl font-extrabold text-white">100%</div>
-            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">No Forced Dispatch</div>
+          <div class="bg-slate-900/80 border border-slate-700/70 rounded-2xl p-4 backdrop-blur-md shadow-xl hover:border-white/50 transition">
+            <div class="text-3xl sm:text-4xl font-black text-white">100%</div>
+            <div class="text-xs text-slate-300 mt-1 uppercase tracking-wider font-bold">No Forced Dispatch</div>
           </div>
-          <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 backdrop-blur">
-            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">24/7</div>
-            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Butch Back Office</div>
+          <div class="bg-slate-900/80 border border-slate-700/70 rounded-2xl p-4 backdrop-blur-md shadow-xl hover:border-emerald-500/50 transition">
+            <div class="text-3xl sm:text-4xl font-black text-emerald-400">24/7</div>
+            <div class="text-xs text-slate-300 mt-1 uppercase tracking-wider font-bold">Butch Back Office</div>
           </div>
         </div>
 
-        <div class="mt-8 flex flex-wrap justify-center gap-4">
-          <button onclick="document.getElementById('onboard-section').scrollIntoView({behavior: 'smooth'})" class="px-8 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl text-sm transition shadow-lg shadow-emerald-500/25">
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+          <button onclick="document.getElementById('onboard-section').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl text-sm transition shadow-xl shadow-emerald-500/30 hover:scale-105 transform">
             Start Hauling Now (60-Sec Sign-Up)
           </button>
-          <button onclick="switchTab('generator')" class="px-8 py-3.5 bg-slate-800 hover:bg-slate-700 border border-slate-600/80 text-white font-bold rounded-xl text-sm transition flex items-center space-x-2">
+          <button onclick="switchTab('generator')" class="px-8 py-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-bold rounded-xl text-sm transition flex items-center space-x-2 backdrop-blur-md">
             <span>Try MC Packet Generator</span>
             <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </button>
@@ -119,80 +128,100 @@
       </div>
     </section>
 
-    <!-- EQUIPMENT TYPES WE DISPATCH -->
-    <section class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-10">
-        <h2 class="text-xs uppercase tracking-widest text-emerald-400 font-bold">Butch Fleet Specialties</h2>
-        <p class="text-3xl font-bold text-white mt-1">Tailored Dispatch For Every Trailer Type</p>
-        <p class="text-slate-400 mt-1 text-sm">We secure top freight contracts across DAT One, Truckstop, and direct contracted freight lanes.</p>
+    <!-- EQUIPMENT TYPES (CARDS WITH VISUAL LOGISTICS IMAGERY) -->
+    <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-xs uppercase tracking-widest text-emerald-400 font-extrabold">Butch Fleet Specialties</h2>
+        <p class="text-3xl sm:text-4xl font-black text-white mt-1">Tailored Dispatch For Every Trailer Type</p>
+        <p class="text-slate-400 mt-2 text-sm">We secure top freight contracts across DAT One, Truckstop, and direct contracted freight lanes.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-slate-900 border border-slate-800 hover:border-emerald-500/50 transition-all rounded-2xl p-6 group">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Dry Van -->
+        <div class="bg-slate-900 border border-slate-800 hover:border-emerald-500/60 transition-all duration-300 rounded-3xl overflow-hidden shadow-2xl group flex flex-col justify-between">
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="53' Dry Van Logistics" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+            <span class="absolute top-4 left-4 bg-emerald-500 text-slate-950 font-black text-xs uppercase px-3 py-1 rounded-full shadow-lg">6% Commission</span>
           </div>
-          <h3 class="text-xl font-bold text-white">53' Dry Van</h3>
-          <p class="text-slate-400 text-sm mt-2">High-volume Midwest, Northeast, and Southeast freight with steady round trips and minimal wait times.</p>
-          <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-300">
-            <span>Avg Gross: <strong class="text-emerald-400">$6,500 - $8,200/wk</strong></span>
-            <span>Fee: <strong>6%</strong></span>
-          </div>
-        </div>
-
-        <div class="bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all rounded-2xl p-6 group">
-          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-white">Reefer (Temp-Controlled)</h3>
-          <p class="text-slate-400 text-sm mt-2">Produce and temperature-sensitive freight with maximum rate per mile and guaranteed backhauls.</p>
-          <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-300">
-            <span>Avg Gross: <strong class="text-cyan-400">$7,500 - $9,500/wk</strong></span>
-            <span>Fee: <strong>7%</strong></span>
+          <div class="p-6">
+            <h3 class="text-2xl font-black text-white">53' Dry Van</h3>
+            <p class="text-slate-300 text-sm mt-2">High-volume Midwest, Northeast, and Southeast freight with steady round trips and minimal wait times.</p>
+            <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
+              <span>Avg Gross: <strong class="text-emerald-400 text-sm font-bold">$6,500 - $8,200/wk</strong></span>
+              <span class="bg-slate-800 px-2.5 py-1 rounded-md text-slate-300 font-mono">No Touch</span>
+            </div>
           </div>
         </div>
 
-        <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all rounded-2xl p-6 group">
-          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 16V6a1 1 0 00-1-1H4"/></svg>
+        <!-- Reefer -->
+        <div class="bg-slate-900 border border-slate-800 hover:border-cyan-500/60 transition-all duration-300 rounded-3xl overflow-hidden shadow-2xl group flex flex-col justify-between">
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=800&q=80" alt="Reefer Temperature Controlled" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+            <span class="absolute top-4 left-4 bg-cyan-400 text-slate-950 font-black text-xs uppercase px-3 py-1 rounded-full shadow-lg">7% Commission</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Flatbed / Step Deck / RGN</h3>
-          <p class="text-slate-400 text-sm mt-2">Heavy equipment and construction freight with permit assistance, tarp pay, and high margins.</p>
-          <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-300">
-            <span>Avg Gross: <strong class="text-amber-400">$8,500 - $11,000/wk</strong></span>
-            <span>Fee: <strong>8%</strong></span>
+          <div class="p-6">
+            <h3 class="text-2xl font-black text-white">53' Reefer</h3>
+            <p class="text-slate-300 text-sm mt-2">Produce and temperature-sensitive freight with maximum rate per mile, detention collection, and backhauls.</p>
+            <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
+              <span>Avg Gross: <strong class="text-cyan-400 text-sm font-bold">$7,500 - $9,500/wk</strong></span>
+              <span class="bg-slate-800 px-2.5 py-1 rounded-md text-slate-300 font-mono">Temp-Control</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flatbed -->
+        <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/60 transition-all duration-300 rounded-3xl overflow-hidden shadow-2xl group flex flex-col justify-between">
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80" alt="Flatbed Heavy Haul" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+            <span class="absolute top-4 left-4 bg-amber-400 text-slate-950 font-black text-xs uppercase px-3 py-1 rounded-full shadow-lg">8% Commission</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-black text-white">Flatbed / Step Deck</h3>
+            <p class="text-slate-300 text-sm mt-2">Machinery, building materials, and oversized loads with specialized permit coordination and high rates.</p>
+            <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
+              <span>Avg Gross: <strong class="text-amber-400 text-sm font-bold">$8,500 - $11,000/wk</strong></span>
+              <span class="bg-slate-800 px-2.5 py-1 rounded-md text-slate-300 font-mono">Overweight</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TRUCK-DRIVER FRIENDLY ONBOARDING (SUPER SIMPLE 3-STEP FLOW) -->
-    <section id="onboard-section" class="py-16 bg-slate-900/80 border-t border-slate-800">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <!-- TRUCK-DRIVER FRIENDLY ONBOARDING (SUPER SIMPLE 3-STEP FLOW WITH CABIN BACKDROP) -->
+    <section id="onboard-section" class="relative py-20 border-t border-slate-800 overflow-hidden">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?auto=format&fit=crop&w=1800&q=80" alt="Trucker dashboard highway" class="w-full h-full object-cover object-center filter brightness-[0.22]">
+        <div class="absolute inset-0 bg-slate-950/85"></div>
+      </div>
+
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-8">
-          <span class="inline-block bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+          <span class="inline-block bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3 shadow-lg">
             Quick 60-Second Driver Setup
           </span>
           <h2 class="text-3xl sm:text-4xl font-black text-white">Drive With Butch Logistics</h2>
-          <p class="text-slate-300 text-sm mt-2">No complicated forms. Enter your MC#, pick your trailer, and our dispatchers start booking your loads immediately.</p>
+          <p class="text-slate-300 text-sm mt-2">No complicated paperwork. Enter your MC#, pick your trailer, and our dispatchers start booking your loads immediately.</p>
         </div>
 
-        <form id="carrier-onboard-form" onsubmit="event.preventDefault(); submitCarrierForm();" class="bg-slate-900 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+        <form id="carrier-onboard-form" onsubmit="event.preventDefault(); submitCarrierForm();" class="bg-slate-900/90 backdrop-blur-xl border border-slate-700/80 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
           
           <!-- STEP 1: MC NUMBER & PHONE (AUTO-FILL) -->
           <div>
             <div class="flex items-center justify-between mb-2">
               <label class="text-xs uppercase tracking-wider font-extrabold text-white flex items-center space-x-2">
-                <span class="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-bold">1</span>
+                <span class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-black">1</span>
                 <span>Enter Your MC Number (Or USDOT)</span>
               </label>
-              <button type="button" onclick="autoFillFromMC()" class="text-xs bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 px-3 py-1 rounded-lg font-bold">
+              <button type="button" onclick="autoFillFromMC()" class="text-xs bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/40 px-3 py-1.5 rounded-lg font-bold transition">
                 ⚡ Auto-Fill My Info
               </button>
             </div>
             <div class="relative">
-              <input type="text" id="form-mc" placeholder="Type your MC# (e.g. 1058291)" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3.5 text-white font-mono text-base focus:outline-none focus:border-emerald-500 transition">
+              <input type="text" id="form-mc" placeholder="Type your MC# (e.g. 1058291)" required class="w-full bg-slate-950/90 border border-slate-700 rounded-xl px-4 py-3.5 text-white font-mono text-base focus:outline-none focus:border-emerald-500 transition shadow-inner">
             </div>
             <p class="text-[11px] text-slate-400 mt-1">Our system connects to FMCSA to verify your active authority instantly.</p>
           </div>
@@ -200,36 +229,36 @@
           <!-- STEP 2: SELECT YOUR TRAILER (BIG VISUAL BUTTONS) -->
           <div>
             <label class="text-xs uppercase tracking-wider font-extrabold text-white flex items-center space-x-2 mb-3">
-              <span class="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-bold">2</span>
+              <span class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-black">2</span>
               <span>Tap Your Equipment Type</span>
             </label>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <div>
                 <input type="radio" name="equipment" id="eq-van" value="Dry Van" checked class="hidden equip-radio">
-                <label for="eq-van" class="block border-2 border-slate-800 bg-slate-950 rounded-xl p-3 text-center cursor-pointer hover:border-slate-700 transition">
-                  <span class="text-xl block">🚚</span>
-                  <span class="text-xs font-bold block mt-1">53' Dry Van</span>
+                <label for="eq-van" class="block border-2 border-slate-800 bg-slate-950/80 rounded-2xl p-4 text-center cursor-pointer hover:border-slate-600 transition">
+                  <span class="text-2xl block">🚚</span>
+                  <span class="text-xs font-black block mt-1">53' Dry Van</span>
                 </label>
               </div>
               <div>
                 <input type="radio" name="equipment" id="eq-reefer" value="Reefer" class="hidden equip-radio">
-                <label for="eq-reefer" class="block border-2 border-slate-800 bg-slate-950 rounded-xl p-3 text-center cursor-pointer hover:border-slate-700 transition">
-                  <span class="text-xl block">❄️</span>
-                  <span class="text-xs font-bold block mt-1">53' Reefer</span>
+                <label for="eq-reefer" class="block border-2 border-slate-800 bg-slate-950/80 rounded-2xl p-4 text-center cursor-pointer hover:border-slate-600 transition">
+                  <span class="text-2xl block">❄️</span>
+                  <span class="text-xs font-black block mt-1">53' Reefer</span>
                 </label>
               </div>
               <div>
                 <input type="radio" name="equipment" id="eq-flatbed" value="Flatbed" class="hidden equip-radio">
-                <label for="eq-flatbed" class="block border-2 border-slate-800 bg-slate-950 rounded-xl p-3 text-center cursor-pointer hover:border-slate-700 transition">
-                  <span class="text-xl block">🚜</span>
-                  <span class="text-xs font-bold block mt-1">Flatbed / Step</span>
+                <label for="eq-flatbed" class="block border-2 border-slate-800 bg-slate-950/80 rounded-2xl p-4 text-center cursor-pointer hover:border-slate-600 transition">
+                  <span class="text-2xl block">🚜</span>
+                  <span class="text-xs font-black block mt-1">Flatbed / Step</span>
                 </label>
               </div>
               <div>
                 <input type="radio" name="equipment" id="eq-box" value="Box Truck" class="hidden equip-radio">
-                <label for="eq-box" class="block border-2 border-slate-800 bg-slate-950 rounded-xl p-3 text-center cursor-pointer hover:border-slate-700 transition">
-                  <span class="text-xl block">📦</span>
-                  <span class="text-xs font-bold block mt-1">Box / Hotshot</span>
+                <label for="eq-box" class="block border-2 border-slate-800 bg-slate-950/80 rounded-2xl p-4 text-center cursor-pointer hover:border-slate-600 transition">
+                  <span class="text-2xl block">📦</span>
+                  <span class="text-xs font-black block mt-1">Box / Hotshot</span>
                 </label>
               </div>
             </div>
@@ -238,29 +267,29 @@
           <!-- STEP 3: CONTACT INFORMATION -->
           <div>
             <label class="text-xs uppercase tracking-wider font-extrabold text-white flex items-center space-x-2 mb-3">
-              <span class="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-bold">3</span>
+              <span class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-black">3</span>
               <span>Where Should We Send High-Paying Loads?</span>
             </label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <input type="text" id="form-name" placeholder="Company Legal Name" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+                <input type="text" id="form-name" placeholder="Company Legal Name" required class="w-full bg-slate-950/90 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
               </div>
               <div>
-                <input type="tel" id="form-phone" placeholder="Your Direct Phone Number" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+                <input type="tel" id="form-phone" placeholder="Your Direct Phone Number" required class="w-full bg-slate-950/90 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
               </div>
             </div>
             <div class="mt-3">
-              <input type="email" id="form-email" placeholder="Your Email (For Rate Confirmations)" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
+              <input type="email" id="form-email" placeholder="Your Email (For Rate Confirmations)" required class="w-full bg-slate-950/90 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500 transition">
             </div>
           </div>
 
           <!-- SUBMIT BUTTON -->
-          <button type="submit" class="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl text-base uppercase tracking-wider transition shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2">
+          <button type="submit" class="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl text-base uppercase tracking-wider transition shadow-xl shadow-emerald-500/30 flex items-center justify-center space-x-2 hover:scale-[1.01] transform">
             <span>SUBMIT APPLICATION & GET TOP RATES</span>
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </button>
 
-          <!-- DIRECT PHONE CALL FALLBACK FOR BUSY DRIVERS -->
+          <!-- DIRECT PHONE CALL FALLBACK -->
           <div class="text-center pt-2">
             <span class="text-xs text-slate-400">Prefer to speak right now? </span>
             <a href="tel:2092023080" class="text-xs text-emerald-400 font-bold hover:underline">Call Butch Direct: (209) 202-3080</a>
@@ -274,7 +303,7 @@
     </section>
   </main>
 
-  <!-- TAB: PROPRIETARY BUTCH MC PACKET GENERATOR (FREIGHTLENS INSPIRATION) -->
+  <!-- TAB: PROPRIETARY BUTCH MC PACKET GENERATOR -->
   <main id="tab-generator" class="tab-content hidden transition-opacity duration-300 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-8">
       <div class="inline-flex items-center space-x-2 text-xs font-bold text-cyan-400 uppercase tracking-widest bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800/80 mb-2">
